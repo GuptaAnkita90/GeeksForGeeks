@@ -1,0 +1,61 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+
+class GFG {
+	public static void main (String[] args) {
+		//code
+		
+		int T,N,K;
+	
+		System.out.println("Enter the size of the array: N & Enter the smallest frequency occurence: K");
+		
+		Scanner sc = new Scanner(System.in);
+		T=sc.nextInt();
+		N = sc.nextInt();
+		K=sc.nextInt();
+		
+		int[] arr = new int[N];
+		
+		for(int i=0;i<N;i++)
+		{
+		   arr[i]=sc.nextInt();
+		}
+		
+	
+		
+		int number = getSmallestFrequencyInteger(arr,K);
+		System.out.println(number);
+		
+	}
+	
+	public static int getSmallestFrequencyInteger(int[] arr,int K)
+	{
+	    HashMap<Integer,Integer> hm = new HashMap<Integer,Integer>();
+	    
+	    for(int i=0;i<arr.length;i++)
+	    {
+	        if(hm.containsKey(arr[i]))
+	        hm.put(arr[i],hm.get(arr[i])+1);
+	        
+	        else
+	        hm.put(arr[i],1);
+	    }
+	    
+	    Set<Integer> s = hm.keySet();
+	    int freq = Integer.MAX_VALUE;
+	    
+	    for(int num:s)
+	    {
+	        if(hm.get(num) == K)
+	        {
+	           freq = Math.min(freq,num);
+	        }
+	            
+	    }
+	    
+	  return (freq!=Integer.MAX_VALUE)?freq:-1;
+	    
+	}
+}
